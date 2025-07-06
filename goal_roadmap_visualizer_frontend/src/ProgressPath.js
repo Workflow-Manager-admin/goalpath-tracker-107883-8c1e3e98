@@ -187,7 +187,23 @@ function ProgressPath({ progress = 0, milestones = [] }) {
               // Determine appearance (done, start/end, hover/click)
               const isStart = idx === 0;
               const isEnd = idx === milestones.length - 1;
-              const isDone = !!m.completed;
+              // Use status string for reliable status checking
+              let status = "pending";
+              if (
+                m.status &&
+                (m.status.toLowerCase() === "completed" ||
+                  m.status.toLowerCase() === "done" ||
+                  m.completed)
+              ) {
+                status = "completed";
+              } else if (
+                m.status &&
+                (m.status.toLowerCase() === "in progress" ||
+                  m.status.toLowerCase() === "active" ||
+                  m.status.toLowerCase() === "current")
+              ) {
+                status = "in-progress";
+              }
               const IconComp =
                 typeof m.icon === "string"
                   ? iconMap[m.icon] || (
@@ -196,6 +212,13 @@ function ProgressPath({ progress = 0, milestones = [] }) {
                       </span>
                     )
                   : m.icon;
+
+              // Accessibility
+              let ariaState = "";
+              if (status === "completed") ariaState = " (completed)";
+              else if (status === "in-progress") ariaState = " (in progress)";
+              else ariaState = " (pending)";
+
               return (
                 <button
                   tabIndex={0}
@@ -203,12 +226,14 @@ function ProgressPath({ progress = 0, milestones = [] }) {
                   key={(m.title || "") + idx}
                   className={
                     "milestone-dot interactive" +
-                    (isDone ? " done" : "") +
+                    (status === "completed" ? " milestone-completed" : "") +
+                    (status === "in-progress" ? " milestone-inprogress" : "") +
+                    (status === "pending" ? " milestone-pending" : "") +
                     (isStart ? " start" : "") +
                     (isEnd ? " end" : "") +
                     (activeIdx === idx ? " active" : "")
                   }
-                  aria-label={`Milestone: ${m.title}${isDone ? " (completed)" : ""}`}
+                  aria-label={`Milestone: ${m.title}${ariaState}`}
                   title={m.title}
                   style={{ pointerEvents: "auto" }}
                   onMouseDown={() => setActiveIdx(idx)}

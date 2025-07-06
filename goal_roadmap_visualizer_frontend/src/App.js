@@ -92,22 +92,28 @@ function App() {
               progress={selectedRoadmap?.progress ?? 0.5} 
               milestones={[
                 { 
-                  icon: "BookIcon", title: "Learn JavaScript", completed: true,
+                  icon: "BookIcon",
+                  title: "Learn JavaScript",
+                  completed: true,
                   description: "Master the basics of JavaScript to build web applications.",
                   targetDate: "2024-04-15",
                   status: "Completed"
                 },
                 { 
-                  icon: "LaptopIcon", title: "Build My First Project", completed: false,
+                  icon: "LaptopIcon",
+                  title: "Build My First Project",
+                  completed: false,
                   description: "Apply your new skills to create a personal or small group project.",
                   targetDate: "2024-05-01",
                   status: "In Progress"
                 },
                 { 
-                  icon: "BriefcaseIcon", title: "Get Internship", completed: false,
+                  icon: "BriefcaseIcon",
+                  title: "Get Internship",
+                  completed: false,
                   description: "Find and secure a software internship as a critical experience step.",
                   targetDate: "2024-07-01",
-                  status: "Upcoming"
+                  status: "Pending"
                 }
               ]}
             />

@@ -105,6 +105,27 @@
   box-shadow: 0 1px 10px 0 rgba(24, 113, 249, 0.13);
   z-index: 6;
 }
+/* Styling for status-based milestone dots (colorblind-friendly and modern) */
+.milestone-dot.milestone-completed {
+  background: #33a652; /* Colorblind-safe green */
+  border-color: #33a652;
+  color: #fff;
+  transition: background 0.16s, border-color 0.16s;
+}
+.milestone-dot.milestone-inprogress {
+  background: #ffe066; /* Soft yellow, colorblind-safe */
+  border-color: #ffd600;
+  color: #242526;
+  transition: background 0.16s, border-color 0.16s;
+}
+.milestone-dot.milestone-pending {
+  background: #e0e0e0; /* Modern accessible grey */
+  border-color: #b7b9bb;
+  color: #6d6d6d;
+  transition: background 0.16s, border-color 0.16s;
+}
+
+/* Fallback for legacy .done styles, still supported for legacy code */
 .milestone-dot.done {
   border: 3px solid var(--accent, #ffb703);
   background: var(--accent, #ffb703);
