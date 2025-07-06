@@ -1,0 +1,121 @@
+.progresspath-root {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto 2rem auto;
+  background: var(--bg-main);
+  padding: 1.5em 1.3em 1em 1.3em;
+  border-radius: var(--radius, 18px);
+  box-shadow: 0 3px 18px rgba(30,34,90,0.070), 0 1.5px 7px rgba(150,150,160,0.045);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.goal-roadmap-section {
+  width: 100%;
+  margin-bottom: 2.2rem;
+  padding: 0 0 .2rem 0;
+}
+.goal-roadmap-heading {
+  font-size: 1.39rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 0.8em;
+  text-align: left;
+  width: 100%;
+  letter-spacing: 0.01em;
+}
+
+.progress-container {
+  width: 100%;
+}
+.progress-bg {
+  width: 100%;
+  background: var(--gray-light, #e9ecef);
+  height: 17px;
+  border-radius: 13px;
+  box-shadow: 0 1.5px 6px rgba(30,34,90,0.060);
+  overflow: visible;
+  margin-bottom: 16px;
+  position: relative;
+}
+.progress-bar {
+  background: linear-gradient(90deg, var(--accent, #ffb703) 0%, var(--primary, #1877f2) 100%);
+  height: 100%;
+  border-radius: 13px;
+  box-shadow: 0 1.5px 5px rgba(30, 34, 90, 0.09);
+  transition: width 0.4s cubic-bezier(0.57, 1.15, 0.05, 1.02);
+}
+.milestones-row {
+  display: flex;
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  justify-content: space-between;
+  pointer-events: none;
+}
+.milestone-dot {
+  width: 22px;
+  height: 22px;
+  background: var(--white, #fff);
+  border-radius: 50%;
+  border: 3px solid var(--gray-border, #e2e2e6);
+  box-shadow: 0 1px 8px 0 rgba(20, 24, 90, 0.09);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: border-color 0.28s;
+}
+.milestone-dot.done {
+  border: 3px solid var(--accent);
+  background: var(--accent, #ffb703);
+}
+.milestone-dot.start {
+  margin-left: 0;
+}
+.milestone-dot.end {
+  margin-right: 0;
+}
+.milestone-label {
+  position: absolute;
+  top: 34px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.95em;
+  color: var(--secondary, #242526);
+  font-weight: 400;
+  min-width: 48px;
+  opacity: .83;
+  white-space: nowrap;
+  pointer-events: auto;
+}
+.progress-percent-label {
+  font-size: 1.13em;
+  color: var(--primary, #1877f2);
+  font-weight: 500;
+  margin-top: .65em;
+}
+@media (max-width: 700px) {
+  .goal-roadmap-section,
+  .progresspath-root {
+    max-width: 99vw;
+    min-width: 0;
+    padding: .95em 0.13em 1em 0.13em;
+  }
+  .goal-roadmap-heading {
+    font-size: 1.13rem;
+    margin-bottom: 0.66em;
+  }
+  .milestone-label {
+    top: 29px;
+    font-size: 0.87em;
+  }
+  .milestone-dot {
+    width: 16px; height: 16px;
+    border-width: 2px;
+  }
+}

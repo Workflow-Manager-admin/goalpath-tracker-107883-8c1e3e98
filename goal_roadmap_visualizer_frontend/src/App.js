@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import './ProgressPath.css';
+import ProgressPath from './ProgressPath';
 
 /**
  * PUBLIC_INTERFACE
@@ -83,6 +85,20 @@ function App() {
       <main className="main-content">
         <section className="main-card">
           <h2 className="roadmap-title">{selectedRoadmap?.title ?? "Select a Roadmap"}</h2>
+          {/* My Goal Roadmap - visually prominent section */}
+          <div className="goal-roadmap-section">
+            <h3 className="goal-roadmap-heading">My Goal Roadmap</h3>
+            <ProgressPath 
+              progress={selectedRoadmap?.progress ?? 0.34} 
+              milestones={selectedRoadmap?.milestones ?? [
+                { name: "Start", completed: true },
+                { name: "Step 1", completed: true },
+                { name: "Checkpoint", completed: false },
+                { name: "Step 2", completed: false },
+                { name: "Complete", completed: false }
+              ]}
+            />
+          </div>
           <div className="timeline-placeholder">
             {/* Placeholder for timeline visualization */}
             <span className="timeline-icon" role="img" aria-label="timeline">🗺️</span>
