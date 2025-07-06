@@ -1,0 +1,265 @@
+:root {
+  --primary: #1877f2;
+  --secondary: #242526;
+  --accent: #ffb703;
+  --sidebar-width: 250px;
+  --shadow: 0 4px 16px rgba(30, 34, 90, 0.06), 0 1.5px 8px rgba(30, 34, 90, 0.05);
+  --radius: 18px;
+  --bg-main: #f7f7fb;
+  --white: #fff;
+  --gray-light: #e9ecef;
+  --gray-border: #e2e2e6;
+  --sidebar-bg: #ffffff;
+  --sidebar-shadow: 0 2px 18px 0 rgba(80, 94, 223, 0.03), 0 1.5px 8px rgba(30, 34, 90, 0.04);
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --primary: #1877f2;
+  --secondary: #292c35;
+  --accent: #ffb703;
+  --sidebar-bg: #181b20;
+  --bg-main: #16171B;
+  --white: #181b20;
+  --gray-light: #24242a;
+  --gray-border: #262638;
+  --text-main: #FAFAFA;
+  --sidebar-shadow: 0 2px 18px 0 rgba(20,24,69,.21);
+  --shadow: 0 5px 18px rgba(24,28,70,.10),0 2px 8px rgba(20,24,60,.13);
+}
+
+/* App Root Layout */
+.dashboard-root {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-main);
+  color: var(--secondary);
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Sidebar */
+.sidebar {
+  width: var(--sidebar-width);
+  min-width: 170px;
+  background: var(--sidebar-bg);
+  box-shadow: var(--sidebar-shadow);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 2rem 1rem 1rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  position: relative;
+  z-index: 10;
+}
+.sidebar-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: .8rem;
+  letter-spacing: 0.01em;
+  color: var(--primary);
+}
+.roadmap-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  flex: 1;
+}
+.roadmap-item {
+  padding: 0.7em 1em 0.7em 0.7em;
+  margin-bottom: 0.4em;
+  border-radius: var(--radius);
+  background: none;
+  cursor: pointer;
+  transition: background 0.17s, box-shadow 0.18s;
+  color: var(--secondary);
+  font-size: 1.04rem;
+  box-shadow: none;
+  outline: none;
+  border-left: 5px solid var(--gray-border);
+}
+.roadmap-item.selected, .roadmap-item:focus, .roadmap-item:hover {
+  background: var(--gray-light);
+  color: var(--primary);
+  box-shadow: 0 2px 7px 0 rgba(80, 94, 223, 0.09);
+  border-left: 5px solid var(--accent);
+}
+
+/* Floating Action Button */
+.fab {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 11;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  box-shadow: var(--shadow);
+  font-size: 2.1rem;
+  line-height: 0.7;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.2s, background 0.2s;
+  outline: none;
+}
+.fab:hover, .fab:focus {
+  background: #ffa207;
+  box-shadow: 0 6px 28px rgba(30, 34, 90, 0.10),0 4px 16px rgba(30, 34, 90, 0.08);
+}
+
+/* Main Content Layout */
+.main-content {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2.3rem 1.9rem 2.9rem 1.9rem;
+  min-width: 0;
+}
+
+.main-card {
+  background: var(--white);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  max-width: 620px;
+  width: 100%;
+  padding: 2.1rem 2.3rem 2rem 2.3rem;
+  margin: 1.1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.roadmap-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0 0 1.1rem 0;
+  color: var(--primary);
+  letter-spacing: 0.01em;
+}
+
+/* Timeline Placeholder */
+.timeline-placeholder {
+  width: 100%;
+  text-align: center;
+  margin: 2.7rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.timeline-icon {
+  font-size: 3.2rem;
+  margin-bottom: 0.8rem;
+  color: var(--primary);
+}
+.timeline-text {
+  font-size: 1.1rem;
+  color: var(--secondary);
+  opacity: .78;
+  margin-bottom: 0.5rem;
+}
+.dashboard-desc {
+  font-size: 0.97rem;
+  color: var(--secondary);
+  opacity: .64;
+  margin-top: 2.2rem;
+  margin-bottom: 0;
+  text-align: center;
+  max-width: 330px;
+}
+
+/* Theme toggle button (reused from original) */
+.theme-toggle {
+  position: absolute;
+  top: 17px;
+  right: 24px;
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  z-index: 100;
+}
+.theme-toggle:hover, .theme-toggle:focus {
+  background: var(--accent);
+  color: #fff;
+  opacity: .94;
+}
+
+@media (max-width: 900px) {
+  .main-card {
+    padding: 1.3rem 1rem;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .main-content {
+    padding: 1.2rem 0.4rem;
+  }
+}
+@media (max-width: 700px) {
+  .dashboard-root {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100vw;
+    min-width: 0;
+    flex-direction: row;
+    padding: 0.5em 0.6em 0.7em 0.9em;
+    border-radius: 0 0 var(--radius) var(--radius);
+    align-items: center;
+    box-shadow: var(--sidebar-shadow);
+    margin-bottom: 0.5rem;
+  }
+  .sidebar-title {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+    margin-right: 1.5rem;
+  }
+  .roadmap-list {
+    display: flex;
+    gap: .3rem;
+    margin: 0 0 0 1.2rem;
+  }
+  .roadmap-item {
+    min-width: 82px;
+    font-size: 0.98rem;
+    padding: 0.53em 0.7em 0.53em 0.7em;
+    margin-bottom: 0;
+    margin-right: 5px;
+    border-radius: 10px;
+  }
+  .fab {
+    left: auto;
+    right: 16px;
+    bottom: 10px;
+    transform: none;
+    width: 48px;
+    height: 48px;
+    font-size: 1.7rem;
+  }
+  .main-card {
+    margin: 1.9rem auto 1.5rem auto;
+    padding: 1.05rem 5vw;
+    max-width: 99vw;
+    border-radius: 17px;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gray-light);
+  border-radius: 8px;
+}

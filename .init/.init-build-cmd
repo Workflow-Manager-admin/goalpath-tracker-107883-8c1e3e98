@@ -1,0 +1,4 @@
+{
+    "command": "npm install && npx tsc --noEmit && npm test -- --ci",
+    "working_directory": "/home/kavia/workspace/code-generation/goalpath-tracker-107883-8c1e3e98/goal_roadmap_visualizer_frontend"
+}
