@@ -89,13 +89,11 @@ function App() {
           <div className="goal-roadmap-section">
             <h3 className="goal-roadmap-heading">My Goal Roadmap</h3>
             <ProgressPath 
-              progress={selectedRoadmap?.progress ?? 0.34} 
-              milestones={selectedRoadmap?.milestones ?? [
-                { name: "Start", completed: true },
-                { name: "Step 1", completed: true },
-                { name: "Checkpoint", completed: false },
-                { name: "Step 2", completed: false },
-                { name: "Complete", completed: false }
+              progress={selectedRoadmap?.progress ?? 0.5} 
+              milestones={[
+                { icon: "BookIcon", title: "Learn JavaScript", completed: true },
+                { icon: "LaptopIcon", title: "Build My First Project", completed: false },
+                { icon: "BriefcaseIcon", title: "Get Internship", completed: false }
               ]}
             />
           </div>

@@ -57,21 +57,56 @@
   pointer-events: none;
 }
 .milestone-dot {
-  width: 22px;
-  height: 22px;
-  background: var(--white, #fff);
-  border-radius: 50%;
-  border: 3px solid var(--gray-border, #e2e2e6);
-  box-shadow: 0 1px 8px 0 rgba(20, 24, 90, 0.09);
-  z-index: 2;
+  /* Start as a button for interactivity */
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  width: 38px;
+  height: 38px;
+  box-sizing: border-box;
+  min-width: 38px;
+  min-height: 38px;
+  max-width: 48px;
+  max-height: 48px;
+  border-radius: 50%;
+  border: 3px solid var(--gray-border, #e2e2e6);
+  background: var(--white, #fff);
+  box-shadow: 0 1px 8px 0 rgba(20, 24, 90, 0.09);
   position: relative;
-  transition: border-color 0.28s;
+  z-index: 3;
+  margin: 0 1px;
+  transition: 
+    border-color 0.18s, 
+    background 0.15s,
+    box-shadow 0.18s;
+  cursor: pointer;
+  outline: none;
+  pointer-events: auto;
+  user-select: none;
+  border-style: solid;
+  border-width: 3px;
+}
+.milestone-dot.interactive {
+  border-color: var(--gray-border, #e2e2e6);
+  background: var(--white, #fff);
+}
+.milestone-dot.interactive:hover,
+.milestone-dot.interactive:focus {
+  background: var(--gray-light, #f0f8fa);
+  border-color: var(--accent, #ffb703);
+  box-shadow: 0 3px 16px 0 rgba(30, 47, 90, 0.09);
+  z-index: 4;
+}
+.milestone-dot.interactive.active,
+.milestone-dot.interactive:active {
+  border-color: var(--primary, #1877f2);
+  background: var(--white);
+  box-shadow: 0 1px 10px 0 rgba(24, 113, 249, 0.13);
+  z-index: 6;
 }
 .milestone-dot.done {
-  border: 3px solid var(--accent);
+  border: 3px solid var(--accent, #ffb703);
   background: var(--accent, #ffb703);
 }
 .milestone-dot.start {
@@ -80,18 +115,80 @@
 .milestone-dot.end {
   margin-right: 0;
 }
+.milestone-dot:focus-visible {
+  /* For keyboard accessibility highlighting */
+  outline: 2px solid var(--primary, #1877f2);
+}
 .milestone-label {
   position: absolute;
-  top: 34px;
+  top: 36px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 0.95em;
+  font-size: 0.98em;
   color: var(--secondary, #242526);
-  font-weight: 400;
-  min-width: 48px;
-  opacity: .83;
+  font-weight: 500;
+  min-width: 60px;
+  opacity: 0.83;
   white-space: nowrap;
   pointer-events: auto;
+  letter-spacing: 0.01em;
+  background: none;
+  border: none;
+  margin-top: 0.16em;
+  text-align: center;
+  text-shadow: none;
+}
+.milestone-icon {
+  font-size: 1.15em;
+  margin-bottom: 1px;
+  /* The icon is centered inside the dot */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary, #1877f2);
+}
+.milestones-row {
+  display: flex;
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  justify-content: space-between;
+  /* layering supported for hover interactivity */
+}
+.milestones-row.clickable-milestones {
+  pointer-events: auto;
+  z-index: 11;
+}
+.progress-bg {
+  position: relative;
+}
+
+/* Accessibility for buttons */
+.milestone-dot[role="button"]:focus {
+  outline: 2px solid var(--primary, #1877f2);
+  outline-offset: 2px;
+}
+@media (max-width: 700px) {
+  .milestone-dot {
+    width: 26px;
+    height: 26px;
+    min-width: 18px;
+    min-height: 18px;
+    font-size: 1em;
+    border-width: 2px;
+    max-width: 30px;
+    max-height: 30px;
+  }
+  .milestone-label {
+    top: 22px;
+    font-size: 0.85em;
+    min-width: 40px;
+  }
+  .milestone-icon {
+    font-size: 1em;
+  }
 }
 .progress-percent-label {
   font-size: 1.13em;
